@@ -1,0 +1,6 @@
+file_keyword: /path/to/keywords.txt
+save_dir: /path/to/save_dir
+log: /path/to/log
+page: number of page for download
+point_border: number of response border
+debug: false

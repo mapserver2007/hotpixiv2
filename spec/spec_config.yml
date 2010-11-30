@@ -1,0 +1,13 @@
+common:
+  log: e:/tmp/pic
+  keyword: けいおん！
+  save_dir: e:/tmp/pic
+  page: 1
+  point_border: 10
+  debug: true
+
+other:
+  file_keyword: e:/tmp/pic/keywords.txt
+  config: e:/tmp/pic/config.yml
+  dummy_value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  timeout: 0.00000000001
