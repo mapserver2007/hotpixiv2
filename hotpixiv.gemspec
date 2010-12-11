@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hotpixiv}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["mapserver2007"]
-  s.date = %q{2010-11-30}
+  s.date = %q{2010-12-11}
   s.default_executable = %q{hotpixiv}
   s.description = %q{hotpixiv. Auto collection tool in pixiv.}
   s.email = %q{mapserver2007@gmail.com}

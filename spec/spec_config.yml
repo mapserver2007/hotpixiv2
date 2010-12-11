@@ -9,5 +9,6 @@ common:
 other:
   file_keyword: e:/tmp/pic/keywords.txt
   config: e:/tmp/pic/config.yml
+  config_ja: e:/tmp/pic/テスト用保存ディレクトリ/config.yml
   dummy_value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   timeout: 0.00000000001

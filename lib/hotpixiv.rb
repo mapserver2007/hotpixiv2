@@ -3,7 +3,7 @@ require 'hotpixiv/download'
 require 'hotpixiv/utils'
 
 module HotPixiv
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
   PIXIV_API_URL = 'http://iphone.pxv.jp/iphone/'
   REFERER = 'http://www.pixiv.net/'
   USER_AGENT = 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us)

@@ -32,6 +32,11 @@ describe HotPixiv, 'が実行する処理' do
       @params[:file_keyword] = @rspec.params.file_keyword
       HotPixiv.get(@params)
     end
+
+    it "ファイルパス設定に日本語を含む場合、実行が正常にできること" do
+      @params[:config] = @rspec.params.config_ja
+      HotPixiv.get(@params)
+    end
   end
 
   describe '異常系' do
