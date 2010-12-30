@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'mechanize'
 require 'open-uri'
-require 'hotpixiv/runner'
+require 'parallel_runner'
 
 module HotPixiv
   class Download
@@ -43,7 +43,7 @@ module HotPixiv
       # 総合点：e[16], 評価回数：e[15], 閲覧回数：e[17]
       # サーバID：e[4], ユーザID：e[6], 画像ID：e[0], 拡張子：e[2]
       url = "http://img#{e[4]}.pixiv.net/img/#{e[6]}/#{e[0]}.#{e[2]}"
-      e[16].to_i >= point && URL_REGEXP =~ url ? url : nil
+      e[16].to_i >= point && !!(URL_REGEXP =~ url) ? url : nil
     end
 
     # 画像ダウンロード
@@ -61,19 +61,21 @@ module HotPixiv
       begin
         save_image(url, keyword)
         message_list << {:info => url}
-        # マンガの場合
-        rescue OpenURI::HTTPError
-          begin
-            0.upto(Float::INFINITY) do |page|
-              url_with_page = url.gsub(/(\d*)\.[jpg|png|gif]{3}/) do |matched|
-                f = matched.split(/\./)
-                "#{f[0]}_p#{page}.#{f[1]}"
-              end
-              save_image(url_with_page, keyword)
-              message_list << {:info => url}
+      # マンガの場合
+      rescue OpenURI::HTTPError
+        begin
+          0.upto(Float::INFINITY) do |page|
+            url_with_page = url.gsub(/(\d*)\.[jpg|png|gif]{3}/) do |matched|
+              f = matched.split(/\./)
+              "#{f[0]}_p#{page}.#{f[1]}"
             end
-          rescue OpenURI::HTTPError; end
+            save_image(url_with_page, keyword)
+            message_list << {:info => url}
+          end
+        rescue SocketError, OpenURI::HTTPError => e
+          message_list << {:error => "#{url} - #{e.message}"}
         end
+      end
       message_list
     end
 
@@ -107,7 +109,7 @@ module HotPixiv
       Utils.create_dir(@save_dir)
 
       # 並列ダウンロード開始
-      print "Downloading ... \n"
+      puts "Downloading ..."
       Runner.parallel(page_list) do |page|
         # URLからキーワードを抽出
         keyword = URI.decode($1).encode(Utils.os_encoding) if /word=(.*?)&/ =~ page

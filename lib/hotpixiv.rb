@@ -3,14 +3,14 @@ require 'hotpixiv/download'
 require 'hotpixiv/utils'
 
 module HotPixiv
-  VERSION = '0.2.1'
+  VERSION = '0.2.2'
   PIXIV_API_URL = 'http://iphone.pxv.jp/iphone/'
   REFERER = 'http://www.pixiv.net/'
   USER_AGENT = 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us)
     AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16'
   DOWNLOAD_TIMEOUT = 10
-  PAGE = 20
-  POINT_BORDER = 30
+  PAGE = 10
+  POINT_BORDER = 0
   LOG_LEVEL = 1
   URL_REGEXP = /s?http?:\/\/img\d{2}.pixiv.net\/img\/.*?\/\d{8}\.(jpg|gif|png)/
 
@@ -42,11 +42,11 @@ module HotPixiv
           # 処理が成功した場合
           if level == :info
             @log.info = msg
-            print "o"
+            puts "[OK]\t#{msg}\n"
           # 処理が失敗した場合
           elsif level == :error
             @log.error = msg
-            print "x"
+            puts "[NG]\t#{msg}\n"
           end
         end
       rescue => e
