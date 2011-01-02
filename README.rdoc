@@ -18,11 +18,12 @@ Generate and install the gem, execute a command.
 The available option are:
 
   -h # help
+  -v # show varsion.
   -l # output log file path.
   -k # set the search keyword (only one).
   -f # set the search keywords from textfile (more than one).
   (choose either of -k or -f)
-  -p # acquire the image which is bigger than pixiv image's total point.
+  -p # page number.
   -s # set the directory path. downloaded image stores there.
   -b # threshold of pixiv point.
   -d # show debug message.
@@ -33,6 +34,10 @@ The available option are:
 execute command example:
 
   hotpixiv -p 50 -f c:/keywords.txt -s c:/pixiv/img -l e:/pixiv/log
+
+or
+
+  hotpixiv -C c:/config.yml
 
 == Copyright
 
