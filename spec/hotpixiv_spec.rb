@@ -11,7 +11,7 @@ describe HotPixiv, 'が実行する処理' do
 
   describe '正常系' do
     after do
-      HotPixiv.log_inspector(:error, true).should be_nil
+      HotPixiv.log_inspector(:error, true).should be_empty
     end
 
     it "コマンドライン引数による実行が正常にできること" do
@@ -30,6 +30,7 @@ describe HotPixiv, 'が実行する処理' do
 
     it "キーワードをファイルから指定して正常に実行出来ること" do
       @params[:file_keyword] = @rspec.params.file_keyword
+      p @params[:file_keyword]
       HotPixiv.get(@params)
     end
 

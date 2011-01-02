@@ -18,7 +18,7 @@ DESCRIPTION       = "hotpixiv. Auto collection tool in pixiv."
 HOMEPATH          = "http://github.com/#{AUTHOR}/#{PROJECT_NAME}"
 RUBYFORGE_PROJECT = "hotpixiv2"
 BIN_FILES         = %w( hotpixiv )
-VERS              = '0.2.2'
+VERS              = '0.2.3'
 REV = File.read(".svn/entries")[/committed-rev="(d+)"/, 1] rescue nil
 CLEAN.include ['**/.*.sw?', '*.gem', '.config']
 RDOC_OPTS = [

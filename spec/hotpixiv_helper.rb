@@ -47,15 +47,14 @@ module HotPixiv
     def add_log_inspector
       Log.class_eval do
         def ignore_error(list)
-          # ネットワークエラーは状況によって発生するのでテストでは無視する
-          ignores = ["getaddrinfo: no address associated with hostname."]
           list.reject! do |e|
-            ignores.index(e) != nil
-          end unless list.nil?
+            !!(e.index("getaddrinfo: no address associated with hostname."))
+          end
         end
 
         def log_inspector(level, error_ignore)
           # 特定のエラーを無視する
+          @debug[level] ||= []
           if error_ignore
             ignore_error @debug[level]
           end
@@ -72,7 +71,7 @@ module HotPixiv
 
     # 実行結果エラーログを確認する
     def error_inspector(msg)
-      HotPixiv.log_inspector(:error).each do |inspect_msg|
+      HotPixiv.log_inspector(:error, true).each do |inspect_msg|
         inspect_msg.should == msg
       end
     end

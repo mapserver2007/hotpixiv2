@@ -3,7 +3,7 @@ common:
   keyword: けいおん！
   save_dir: e:/tmp/pic
   page: 1
-  point_border: 10
+  point_border: 30
   debug: true
 
 other:

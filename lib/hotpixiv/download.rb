@@ -70,11 +70,11 @@ module HotPixiv
               "#{f[0]}_p#{page}.#{f[1]}"
             end
             save_image(url_with_page, keyword)
-            message_list << {:info => url}
+            message_list << {:info => url_with_page}
           end
-        rescue SocketError, OpenURI::HTTPError => e
+        rescue SocketError => e
           message_list << {:error => "#{url} - #{e.message}"}
-        end
+        rescue OpenURI::HTTPError; end
       end
       message_list
     end
